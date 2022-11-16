@@ -1,12 +1,16 @@
 import speech_recognition as sr
 import requests
+import subprocess
 
 url = 'https://docs.google.com/forms/d/e/1FAIpQLScGia1PMCFzaURH1UUX0DXtfzcQ-uyF8kStjZp0cDjccx5Cvw/formResponse?'
+
+def speak(text):
+    subprocess.call(["say",text])
 
 def listen(prompt):
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        # add function for speaking using the "prompt"
+        speak(text)
         audio = r.listen(source)
     text1 = r.recognize_google(audio)
     text = text1.replace(" ", "+")
